@@ -16,7 +16,8 @@ while True:
     print(results.pose_landmarks)
     if results.pose_landmarks:
         mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
-        # id: siehe https://google.github.io/mediapipe/solutions/pose.html
+
+        # id=Körperteile: siehe https://google.github.io/mediapipe/solutions/pose.html
         for id, lm in enumerate(results.pose_landmarks.landmark):
             h, w, c = img.shape
             print(id, lm)
