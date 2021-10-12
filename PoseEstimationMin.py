@@ -16,6 +16,7 @@ while True:
     print(results.pose_landmarks)
     if results.pose_landmarks:
         mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
+        # id: siehe https://google.github.io/mediapipe/solutions/pose.html
         for id, lm in enumerate(results.pose_landmarks.landmark):
             h, w, c = img.shape
             print(id, lm)
@@ -23,15 +24,16 @@ while True:
             cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
 
     cTime = time.time()
-    fps = 1/(cTime-pTime)
+    fps = 1 / (cTime - pTime)
     pTime = cTime
 
     cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
 
     cv2.imshow("Image", img)
 
+    # Press Escape to Exit
     k = cv2.waitKey(1)
-    if k%256 == 27:
+    if k % 256 == 27:
         print("Escape hit, closing...")
         break
 
@@ -40,6 +42,3 @@ while True:
 cap.release()
 
 cv2.destroyAllWindows()
-
-
-
