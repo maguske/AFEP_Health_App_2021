@@ -34,7 +34,7 @@ class poseDetector():
         return img
 
     def find_position(self, img, draw=True):
-        # id=Körperteile: siehe https://google.github.io/mediapipe/solutions/pose.html
+        # id=Pose Landmarks: siehe https://google.github.io/mediapipe/solutions/pose.html
         lmlist = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
@@ -100,17 +100,19 @@ def main():
     while True:
         success, img = cap.read()
         img = detector.find_pose(img)
-        #lmlist = detector.find_position(img)
+        pose_landmarks = detector.find_position(img,False)
         #angle = detector.angle_between_two_points(img, 13, 15)
-        angle = detector.angle_between_three_points(img, 13, 11, 15)
+        #angle = detector.angle_between_three_points(img, 13, 11, 15)
         #print(lmlist)
 
         cTime = time.time()
         fps = 1 / (cTime - pTime)
         pTime = cTime
         cv2.putText(img, 'FPS: ' + str(int(fps)), (10, 30), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
-        cv2.putText(img, 'Winkel: ' + str(angle), (10, 60), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
 
+        #cv2.putText(img, 'Winkel: ' + str(angle), (10, 60), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+        if len(pose_landmarks) != 0:
+            cv2.circle(img, (pose_landmarks[14][1], pose_landmarks[14][2]), 7, (0, 0, 255), cv2.FILLED)
         cv2.imshow("Image", img)
         # Press Escape to Exit
         k = cv2.waitKey(1)
