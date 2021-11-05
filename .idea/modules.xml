@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AFEP_Health_App_2021.iml" filepath="$PROJECT_DIR$/.idea/AFEP_Health_App_2021.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../afep-2021/.idea/afep-2021.iml" filepath="$PROJECT_DIR$/../afep-2021/.idea/afep-2021.iml" />
     </modules>
   </component>
 </project>
